@@ -6,5 +6,5 @@ begin
 	anos:=idd div 365;
 	mes:=(idd - 365*anos) div 30; 
 	dias:= ((idd - 365*anos) - 30*mes);
-	writeln('Você tem ',anos,' anos,',mes,' meses,',dias,' dias de vida.');
+	writeln('Você tem ',anos,' anos,',mes,' meses,',dias,' dias de vida');
 end. 
