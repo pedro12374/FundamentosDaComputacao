@@ -1,0 +1,6 @@
+*.o
+*.cfg
+*.dsk
+*.err
+*.ini
+*.out
