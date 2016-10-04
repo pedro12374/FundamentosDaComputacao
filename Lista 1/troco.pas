@@ -1,5 +1,5 @@
 program troco;
-var trc,cem,cinq,vin,des,cinc,dois,um: real;
+var trc,cem,cinq,vin,des,cinc,dois,um: longint;
 begin
 	writeln('Entre com o valor a ser decomposto.');
 	read(trc);
