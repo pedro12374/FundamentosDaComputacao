@@ -1,5 +1,5 @@
 program inverter;
-var n,uni,des,cen,mil,p1,p2: integer;
+var n,uni,des,cen,mil,p1: integer;
 begin
 	writeln('Entre com um numero inteiro de 4 digitos a ser invertido.');
 	read(n);
@@ -9,5 +9,6 @@ begin
 	p1:=p1 div 10;
 	des:=p1 mod 10;
 	uni:=p1 div 10;
-	writeln('O inverso de ',n,' é ',mil,cen,des,uni);
+	p1:=mil*1000+cen*100+des*10+uni;
+	writeln('O inverso de ',n,' é ',p1);
 end.
