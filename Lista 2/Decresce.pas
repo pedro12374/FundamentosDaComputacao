@@ -7,12 +7,10 @@ begin
 	read(n4);
 	if(n4>n1) and (n4>n2) and (n4>n3)
 		then writeln(n4,n3,n2,n1)
-		else if(n4<n1) and (n4>n2) and (n4>n3)
+		else if(n4<n1) and (n4<n2) and (n4<n3)
 			then writeln(n3,n2,n1,n4)
-			else if(n4>n1) and (n4<n2) and (n4>n3)
-				then writeln(n3,n2,n4,n1)
-				else if(n4<n1) and (n4<n2) and (n4>n3)
+				else if(n4>n1) and (n4>n2) and (n4<n3)
 					then writeln(n3,n4,n2,n1)
-					else if(n4<n1) and (n4<n2) and (n4<n3)
-						then writeln(n4,n3,n2,n1)
+					else if(n4>n1) and (n4<n2) and (n4<n3)
+						then writeln(n3,n2,n4,n1)
 end.
