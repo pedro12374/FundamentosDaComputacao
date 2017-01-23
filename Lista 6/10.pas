@@ -1,8 +1,9 @@
 program Matimatica;
-const fim = 4;
+const fim = 5;
 var l,j,Int,D,U,n1,n2: integer;
-X:array[0..fim] of integer = (1,7,8,3,2);
-Y:array[0..fim] of integer = (7,3,9,2,57);
+flag:Boolean;
+X:array[0..fim] of integer = (1,7,8,3,2,6);
+Y:array[0..fim] of integer = (8,3,9,2,57,6);
 vetU:array[0..2*fim] of integer;
 vetI:array[0..2*fim] of integer;
 vetD:array[0..2*fim] of integer;
@@ -13,7 +14,10 @@ begin
   Int:=-1;
   l:=0;
   n1:=0;
-  for l:=0 to fim do// for l := 0 to fim do
+  flag:=false;
+
+  //Encontra a Interseccao
+  for l:=0 to fim do
     begin
       for j := 0 to fim do
         begin
@@ -24,32 +28,38 @@ begin
             end;
         end;
     end;
+
+
+  //Encontra a diferenca
   for l:=0 to fim do
     begin
-      writeln('l: ',l);
+      flag:=True;
       for n1 := 0 to int do
         begin
-          writeln('l: ',l,' - X[l]: ',X[l]);
-          if X[l]<>vetI[n1] then
-            begin
-              writeln('l: ',l,' - X[l]: ',X[l],' - vetI[n1]: ',vetI[n1]);
-              D:=D+1;
-              vetD[D]:=X[l];
-            end;
+          if (X[l]=vetI[n1]) then
+              flag:=False;
         end;
+        if flag then
+          begin
+            D:=D+1;
+            vetD[D]:=X[l];
+          end;
     end;
 
-  for n1 := 0 to D do
-    write(vetD[n1]);
-  writeln('');
-  {for l:=0 to (D+Int) do
+  //Encontra a Uniao
+  writeln(D+Int);
+  writeln(D);
+  writeln(int);
+  for l:=0 to (D+Int) do
     begin
       for j:=0 to D do
         vetU[l]:=vetD[j];
       for j:=0 to Int do
         vetU[l]:=vetI[j];
-    end;}
-  {write('Uniao entre X e Y: ');
+    end;
+
+  //So escreve
+  write('Uniao entre X e Y: ');
   for l := 0 to D+int do
     write(vetU[l],'-');
   writeln('');
@@ -61,5 +71,5 @@ begin
   for l := 0 to int do
     write(vetI[l],'-');
   writeln('');
-}
+
 end.
