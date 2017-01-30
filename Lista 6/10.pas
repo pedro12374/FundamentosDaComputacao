@@ -1,25 +1,24 @@
 program Matimatica;
 const fim = 5;
-var l,j,Int,D,U,n1,n2: integer;
+var l,j,Int,DX,DY: integer;
 flag:Boolean;
-X:array[0..fim] of integer = (1,7,8,3,2,6);
-Y:array[0..fim] of integer = (8,3,9,2,57,6);
-vetU:array[0..2*fim] of integer;
-vetI:array[0..2*fim] of integer;
-vetD:array[0..2*fim] of integer;
+X:array[1..fim] of integer = (1,7,8,3,13);
+Y:array[1..fim] of integer = (8,3,9,2,57);
+vetU:array[1..2*fim] of integer;
+vetI:array[1..2*fim] of integer;
+vetDX:array[1..2*fim] of integer;
+vetDY:array[1..2*fim] of integer;
 
 begin
-  D:=-1;
-  U:=-1;
-  Int:=-1;
-  l:=0;
-  n1:=0;
+  DX:=0;
+  DY:=0;
+  Int:=0;
   flag:=false;
 
   //Encontra a Interseccao
-  for l:=0 to fim do
+  for l:=1 to fim do
     begin
-      for j := 0 to fim do
+      for j := 1 to fim do
         begin
           if(X[l]=Y[j]) then
             begin
@@ -30,46 +29,63 @@ begin
     end;
 
 
-  //Encontra a diferenca
-  for l:=0 to fim do
+  //Encontra a diferenca entre X e Y
+  for l:=1 to fim do
     begin
       flag:=True;
-      for n1 := 0 to int do
+      for j := 1 to int do
         begin
-          if (X[l]=vetI[n1]) then
+          if (X[l]=vetI[j]) then
               flag:=False;
         end;
+      if flag then
+        begin
+          DX:=DX+1;
+          vetDX[DX]:=X[l];
+        end;
+    end;
+
+
+    //Encontra a diferenca entre Y e X
+    for l:=1 to fim do
+      begin
+        flag:=True;
+        for j := 1 to int do
+          begin
+            if (Y[l]=vetI[j]) then
+                flag:=False;
+          end;
         if flag then
           begin
-            D:=D+1;
-            vetD[D]:=X[l];
+            DY:=DY+1;
+            vetDY[DY]:=Y[l];
           end;
-    end;
+      end;
 
   //Encontra a Uniao
-  writeln(D+Int);
-  writeln(D);
-  writeln(int);
-  for l:=0 to (D+Int) do
-    begin
-      for j:=0 to D do
-        vetU[l]:=vetD[j];
-      for j:=0 to Int do
-        vetU[l]:=vetI[j];
-    end;
+    for l := 1 to (int) do
+        vetU[l]:=vetI[l];
+    for l := int+1 to  (DX+INT) do
+        vetU[l]:=vetDX[l-dx+1];
+    for l := (DX+INT+1) to (DX+INT+DY) do
+        vetU[l]:=vetDY[l-dx-int];
+
 
   //So escreve
-  write('Uniao entre X e Y: ');
-  for l := 0 to D+int do
-    write(vetU[l],'-');
-  writeln('');
   write('Diferenca entre X e Y: ');
-  for l := 0 to D do
-    write(vetD[l],'-');
+  for l := 1 to DX do
+    write(vetDX[l],'-');
+  writeln('');
+  write('Diferenca entre Y e X: ');
+  for l := 1 to DY do
+    write(vetDY[l],'-');
   writeln('');
   write('Interseccao entre X e Y: ');
-  for l := 0 to int do
+  for l := 1 to int do
     write(vetI[l],'-');
   writeln('');
-
+  write('Uniao entre X e Y: ');
+  for l := 1 to (DX+int+DY) do
+    write(vetU[l],'-');
+  writeln('');
 end.
